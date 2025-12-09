@@ -19,7 +19,7 @@
         <div class="h-right">
             <a href="#"><i class="ri-instagram-fill"></i></a>
             <a href="#"><i class="ri-twitter-fill"></i></a>
-            <a href="#"><i class="ri-whatsapp-fill"></i></a>
+            <a href="https://wa.me/923121963155" target="_blank"><i class="ri-whatsapp-fill"></i></a>
             <div class="bx bx-menu" id="menu-icon"></div>
         </div>
     </header>
@@ -31,17 +31,17 @@
     <section class="contact-container">
         <div class="contact-form">
             <h2>Send Message</h2>
-            <form action="#">
+            <form onsubmit="sendToWhatsapp(); return false;">
                 <div class="input-box">
-                    <input type="text" placeholder="Full Name" required>
+                    <input type="text" id="name" placeholder="Full Name" required>
                 </div>
                 <div class="input-box">
-                    <input type="email" placeholder="Email Address" required>
+                    <input type="email" id="email" placeholder="Email Address" required>
                 </div>
                 <div class="input-box">
-                    <textarea placeholder="Type your message here..." required></textarea>
+                    <textarea id="message" placeholder="Type your message here..." required></textarea>
                 </div>
-                <input type="submit" value="Send Message" class="btn">
+                <button type="submit" class="btn">Send Message</button>
             </form>
         </div>
     </section>
@@ -58,11 +58,27 @@
             <div class="social">
               <a href="#"><i class="ri-instagram-fill"></i></a>
               <a href="#"><i class="ri-twitter-fill"></i></a>
-              <a href="#"><i class="ri-whatsapp-fill"></i></a>
+              <a href="https://wa.me/923121963155" target="_blank"><i class="ri-whatsapp-fill"></i></a>
             </div>
           </div>
     </section>
     <div class="copyright"><p>copyright 2025 By SafarNama</p></div>
+    
     <script src="script.js"></script>
+    
+    <script>
+        function sendToWhatsapp() {
+            let name = document.getElementById('name').value;
+            let email = document.getElementById('email').value;
+            let message = document.getElementById('message').value;
+
+            let url = "https://wa.me/923121963155?text=" 
+                + "Name: " + encodeURIComponent(name) + "%0a"
+                + "Email: " + encodeURIComponent(email) + "%0a"
+                + "Message: " + encodeURIComponent(message);
+
+            window.open(url, '_blank').focus();
+        }
+    </script>
   </body>
 </html>
