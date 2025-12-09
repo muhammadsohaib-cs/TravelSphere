@@ -25,6 +25,7 @@
 body {
   color: var(--text-color);
   background: var(--bg-color);
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 /* --- Header --- */
@@ -34,7 +35,7 @@ header {
   right: 0;
   z-index: 1000;
   width: 100%;
-  background: transparent; /* Clear background */
+  background: transparent;
   padding: 27px 10%;
   display: flex;
   align-items: center;
@@ -44,7 +45,7 @@ header {
 
 header.sticky {
   padding: 15px 10%;
-  background: rgba(0, 0, 0, 0.8); /* Solid dark background instead of blur */
+  background: rgba(0, 0, 0, 0.9);
   border-bottom: 1px solid #333;
 }
 
@@ -101,7 +102,7 @@ span {
   font-size: 30px;
   cursor: pointer;
   z-index: 10001;
-  display: none; 
+  display: none; /* Hidden on Desktop */
 }
 
 /* --- General Section --- */
@@ -130,7 +131,6 @@ section {
 }
 
 /* --- Home / Hero Sections --- */
-/* Removed the linear-gradient overlay to keep the image clear */
 .home {
   position: relative;
   height: 100vh;
@@ -143,7 +143,6 @@ section {
   justify-content: flex-start;
 }
 
-/* Added a subtle text shadow to ensure text is readable without blurring the image */
 .home-text h5, .home-text h1, .home-text p {
   text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
 }
@@ -184,7 +183,7 @@ section {
   justify-content: center;
   text-align: center;
   position: relative;
-  /* Removed ::before overlay to keep image clear */
+  padding: 0 5%;
 }
 
 .page-header h1 {
@@ -192,7 +191,7 @@ section {
   font-size: 4rem;
   font-weight: 700;
   z-index: 2;
-  text-shadow: 2px 2px 15px rgba(0,0,0,0.9); /* Shadow for readability */
+  text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
 }
 
 /* --- Features / Grid --- */
@@ -251,7 +250,6 @@ section {
   height: 300px;
   object-fit: cover;
   transition: all .3s ease;
-  /* Removed brightness filter so these images are also clear */
   filter: brightness(100%); 
 }
 
@@ -362,6 +360,7 @@ section {
   justify-content: center;
   align-items: center;
   min-height: 60vh;
+  padding: 20px;
 }
 
 .contact-form {
@@ -405,13 +404,105 @@ section {
 .blog-content {
   max-width: 900px;
   margin: 0 auto;
-  padding: 50px 20px;
+  padding: 60px 20px;
 }
 
-.blog-content h3 {
-  font-size: 1.5rem;
+.blog-content p {
+  font-size: 1.1rem;
   line-height: 1.8;
-  margin-bottom: 20px;
-  font-weight: 400;
+  margin-bottom: 25px;
+  font-weight: 300;
   color: #ddd;
+}
+
+/* ========================================= */
+/* =========== MEDIA QUERIES =============== */
+/* ========================================= */
+
+/* Large Tablets & Small Laptops */
+@media (max-width: 1200px) {
+  header {
+    padding: 15px 5%;
+  }
+  section {
+    padding: 60px 5% 50px;
+  }
+  :root {
+    --h1-font: 4.5rem;
+    --h2-font: 2.5rem;
+  }
+}
+
+/* Tablets & Mobile Navigation Trigger */
+@media (max-width: 900px) {
+  #menu-icon {
+    display: block; /* Show hamburger icon */
+  }
+
+  .navbar {
+    position: absolute;
+    top: 100%;
+    right: -100%; /* Hidden by default */
+    width: 250px;
+    height: 100vh;
+    background: #111;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    transition: 0.4s ease;
+    border-left: 1px solid #333;
+  }
+
+  .navbar.open {
+    right: 0; /* Slide in */
+  }
+
+  .navbar a {
+    display: block;
+    margin: 20px 0;
+    font-size: 1.2rem;
+  }
+  
+  .page-header h1 {
+    font-size: 3rem;
+  }
+}
+
+/* Mobile Phones */
+@media (max-width: 600px) {
+  :root {
+    --h1-font: 3rem;
+    --h2-font: 2rem;
+  }
+
+  .home-text h1 {
+    font-size: 2.5rem;
+  }
+
+  .home-text p {
+    font-size: 0.9rem;
+  }
+
+  /* Adjust grid columns to be full width on mobile */
+  .tour-content, .feature-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .page-header {
+      height: 40vh;
+  }
+  
+  .page-header h1 {
+      font-size: 2.2rem;
+  }
+
+  .footer {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .contact-form {
+      padding: 20px;
+  }
 }
