@@ -25,3 +25,13 @@ function sendToWhatsapp() {
 
     window.open(url, '_blank').focus();
 }
+
+
+// Theme Toggle Functionality
+const themeIcon = document.querySelector('#theme-icon');
+
+themeIcon.onclick = () => {
+    themeIcon.classList.toggle('bx-sun');
+    themeIcon.classList.toggle('bx-moon');
+    document.body.classList.toggle('light-mode');
+};
